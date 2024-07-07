@@ -1,0 +1,18 @@
+stages:
+  - lint
+  - test
+
+
+flake8:
+  stage: lint
+  image: registry.gitlab.com/pipeline-components/flake8:latest
+  allow_failure: false
+  script:
+    - flake8 --verbose --ignore=E501 .
+
+
+test:
+  stage: test
+  image: python:latest
+  script:
+    - python -m unittest -v test.py
